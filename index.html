@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProofPass - Web3 Digital Identity & Skills Verification</title>
+    <!-- تضمين Pi SDK الرسمي -->
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+    <style>
+        :root {
+            --primary-color: #f7931a;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #ffffff;
+            --text-secondary: #b0b0b0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+        header h1 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 26px;
+        }
+        header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        /* تصميم بطاقة الهوية الرقمية */
+        .id-card {
+            background: var(--card-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(247, 147, 26, 0.15);
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+        }
+        .id-card .badge-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .id-card .logo-text {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .status-dot {
+            height: 10px;
+            width: 10px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .user-info h3 {
+            margin: 0 0 5px 0;
+            font-size: 20px;
+        }
+        .user-info p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .skills-section {
+            margin-top: 15px;
+            border-top: 1px solid #333;
+            padding-top: 12px;
+        }
+        .skills-title {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .skill-tag {
+            display: inline-block;
+            background: rgba(247, 147, 26, 0.15);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 3px;
+        }
+        /* الأزرار */
+        .btn {
+            background-color: var(--primary-color);
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .log-box {
+            margin-top: 15px;
+            background: #181818;
+            border: 1px dashed #444;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #888;
+            text-align: left;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>ProofPass</h1>
+            <p>Decentralized Identity & Verified Skills on Pi Network</p>
+        </header>
+
+        <!-- بطاقة الهوية الرقمية للمستخدم -->
+        <div class="id-card">
+            <div class="badge-top">
+                <span class="logo-text">PROOFPASS VERIFIED</span>
+                <span><span class="status-dot"></span> <small id="auth-status">Not Connected</small></span>
+            </div>
+            <div class="user-info">
+                <h3 id="username-display">Pioneer Guest</h3>
+                <p>ID: <span id="uid-display">------------------------</span></p>
+            </div>
+            <div class="skills-section">
+                <div class="skills-title">Verified Badges</div>
+                <div id="badges-container">
+                    <span class="skill-tag">Web3 Pioneer</span>
+                    <span class="skill-tag">Pi Developer</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- زر المصادقة عبر Pi SDK -->
+        <button class="btn" onclick="authenticatePiUser()">Connect with Pi Network</button>
+
+        <!-- صندوق سجل العمليات للتأكد من الاتصال -->
+        <div class="log-box" id="log-output">
+            System ready. Waiting for Pi SDK authentication...
+        </div>
+    </div>
+
+    <script>
+        // تهيئة Pi SDK
+        const Pi = window.Pi;
+        Pi.init({ version: "2.0", sandbox: true });
+
+        function logMessage(msg) {
+            document.getElementById('log-output').innerText = msg;
+            console.log(msg);
+        }
+
+        // دالة تسجيل الدخول والمصادقة
+        async function authenticatePiUser() {
+            try {
+                logMessage("Authenticating with Pi Browser...");
+                const scopes = ['username', 'payments', 'wallet_address'];
+                
+                function onIncompletePaymentFound(payment) {
+                    logMessage("Incomplete payment found: " + payment.identifier);
+                }
+
+                const auth = await Pi.authenticate(scopes, onIncompletePaymentFound);
+                
+                // تحديث واجهة البطاقة ببيانات المستخدم الحقيقية
+                document.getElementById('username-display').innerText = "@" + auth.user.username;
+                document.getElementById('uid-display').innerText = auth.user.uid;
+                document.getElementById('auth-status').innerText = "Verified Active";
+                
+                logMessage("Successfully authenticated as: " + auth.user.username);
+            } catch (error) {
+                logMessage("Authentication error: " + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -14,209 +14,249 @@
         * { box-sizing: border-box; }
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #0b0f19; 
+            background-color: #070a13; 
             color: #ffffff; 
             margin: 0; 
-            padding: 20px; 
+            padding: 10px; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             min-height: 100vh; 
         }
         .phone-frame {
-            background: #111827;
+            background: #0f1624;
             width: 100%;
-            max-width: 420px;
-            border-radius: 35px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            border: 4px solid #1f2937;
+            max-width: 410px;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8), inset 0 0 15px rgba(245, 158, 11, 0.1);
+            border: 4px solid #1f293d;
             overflow: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
-            height: 680px;
+            height: 720px;
         }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #1f2937;
+            padding: 20px 22px 10px 22px;
         }
-        .header h2 { margin: 0; font-size: 18px; color: #f3f4f6; letter-spacing: 1px; }
+        .header-title { font-size: 16px; font-weight: bold; color: #f3f4f6; letter-spacing: 0.5px; }
+        .menu-icon, .notif-icon { font-size: 18px; cursor: pointer; color: #9ca3af; }
         
-        .content { padding: 20px; flex-grow: 1; overflow-y: auto; text-align: left; }
+        .content { padding: 10px 20px; flex-grow: 1; overflow-y: auto; }
         
-        /* Dashboard & Tabs */
-        .tab-content { display: none; }
-        .tab-content.active-tab { display: block; }
-
-        .profile-section { text-align: center; margin-bottom: 20px; }
+        /* Profile Section */
+        .profile-section { text-align: center; margin-bottom: 15px; }
+        .avatar-container { position: relative; width: 85px; height: 85px; margin: 0 auto 10px; }
         .avatar {
-            width: 75px;
-            height: 75px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 2px solid #f59e0b;
-            margin: 0 auto 10px;
-            background: #1f2937;
+            border: 2.5px solid #f59e0b;
+            background: #1f293d;
+            object-fit: cover;
+        }
+        .verified-icon {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            background: #f59e0b;
+            color: #0f1624;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
+            font-weight: bold;
         }
-        .username { font-size: 18px; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
-        .handle { font-size: 12px; color: #9ca3af; margin-bottom: 8px; }
-        .verified-badge {
-            background: rgba(16, 185, 129, 0.2);
+        .username-row { display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 19px; font-weight: bold; color: #ffffff; }
+        .check-mark { color: #f59e0b; font-size: 15px; }
+        .handle { font-size: 12px; color: #9ca3af; margin-top: 2px; margin-bottom: 8px; }
+        .verified-human {
+            background: rgba(16, 185, 129, 0.15);
             color: #10b981;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 20px;
             font-size: 11px;
             font-weight: bold;
             display: inline-block;
-            border: 1px solid rgba(16, 185, 129, 0.4);
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
         /* Proof Score Card */
         .score-card {
-            background: #1f2937;
-            border-radius: 16px;
-            padding: 18px;
-            margin-bottom: 20px;
-            border: 1px solid #374151;
+            background: linear-gradient(145deg, #161f33, #111827);
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #25334d;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-        .score-title { font-size: 12px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; }
-        .score-value { font-size: 32px; font-weight: bold; color: #f59e0b; margin: 4px 0; }
-        .score-status { font-size: 12px; color: #10b981; font-weight: bold; }
+        .score-title { font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+        .score-value { font-size: 34px; font-weight: bold; color: #ffffff; margin: 4px 0; }
+        .score-value span { color: #f59e0b; font-size: 20px; }
+        .score-status { font-size: 12px; color: #10b981; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 4px; }
 
-        /* Credentials List */
-        .section-title { font-size: 14px; font-weight: bold; margin-bottom: 12px; color: #f3f4f6; }
-        .credential-item {
-            background: #1f2937;
-            padding: 12px 15px;
+        /* Navigation Tabs Inside */
+        .inner-tabs {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid #1f293d;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+        }
+        .inner-tab { background: none; border: none; font-size: 12px; color: #9ca3af; cursor: pointer; font-weight: 600; padding-bottom: 4px; }
+        .inner-tab.active { color: #f59e0b; border-bottom: 2px solid #f59e0b; }
+
+        /* Overview Stats Bars */
+        .stat-item { margin-bottom: 10px; }
+        .stat-info { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; color: #d1d5db; }
+        .stat-bar-bg { background: #1f293d; height: 6px; border-radius: 3px; overflow: hidden; }
+        .stat-bar-fill { background: linear-gradient(90deg, #f59e0b, #10b981); height: 100%; border-radius: 3px; }
+
+        /* Tab Content Panes */
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        /* Credentials List Style */
+        .cred-card-item {
+            background: #161f33;
+            padding: 10px 14px;
             border-radius: 12px;
             margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #374151;
+            border: 1px solid #25334d;
         }
-        .cred-name { font-size: 13px; font-weight: 500; }
-        .cred-status { color: #10b981; font-size: 11px; background: rgba(16, 185, 129, 0.1); padding: 3px 8px; border-radius: 6px; }
+        .cred-left { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; }
+        .cred-verified { color: #10b981; font-size: 11px; font-weight: bold; background: rgba(16, 185, 129, 0.1); padding: 3px 8px; border-radius: 6px; }
 
-        /* Navigation Bar */
+        /* Bottom Navigation Bar */
         .navbar {
-            display: flex; 
+            display: flex;
             justify-content: space-around;
-            background: #111827;
-            border-top: 1px solid #1f2937;
+            background: #0f1624;
+            border-top: 1px solid #1f293d;
             padding: 10px 0;
         }
-        .nav-btn { background: none; border: none; font-size: 11px; color: #9ca3af; text-align: center; cursor: pointer; transition: 0.2s; }
+        .nav-btn { background: none; border: none; font-size: 10px; color: #9ca3af; text-align: center; cursor: pointer; transition: 0.2s; }
         .nav-btn.active { color: #f59e0b; font-weight: bold; }
+        .nav-icon { font-size: 16px; display: block; margin-bottom: 2px; }
     </style>
 </head>
 <body>
     <div class="phone-frame">
+        <!-- Header -->
         <div class="header">
-            <h2>🛡️ ProofPass</h2>
-            <span id="header-status">🟢</span>
+            <span class="menu-icon">☰</span>
+            <span class="header-title">ProofPass</span>
+            <span class="notif-icon">🔔</span>
         </div>
 
+        <!-- Content Area -->
         <div class="content">
-            <!-- تبويب الرئيسية (Home) - يجمع كل شيء -->
-            <div id="tab-home" class="tab-content active-tab">
-                <div class="profile-section">
-                    <div class="avatar">👤</div>
-                    <div class="username" id="display-username">Pepe0807</div>
-                    <div class="handle" id="display-handle">proofpass.me/pepe0807</div>
-                    <div class="verified-badge">✓ Verified Human</div>
+            <!-- Profile Info -->
+            <div class="profile-section">
+                <div class="avatar-container">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" alt="Avatar" class="avatar">
+                    <div class="verified-icon">✓</div>
                 </div>
+                <div class="username-row">
+                    <span id="display-username">Sofiane</span>
+                    <span class="check-mark">✓</span>
+                </div>
+                <div class="handle" id="display-handle">proofpass.me/sofiane</div>
+                <div class="verified-human">Verified Human ✓</div>
+            </div>
 
-                <div class="score-card">
-                    <div class="score-title">Proof Score</div>
-                    <div class="score-value">87<span>/100</span></div>
-                    <div class="score-status">High Trust ↗</div>
-                </div>
+            <!-- Proof Score Card -->
+            <div class="score-card">
+                <div class="score-title">Proof Score</div>
+                <div class="score-value">87<span>/100</span></div>
+                <div class="score-status">High Trust ↗</div>
+            </div>
 
-                <div class="section-title">Verified Credentials</div>
-                <div class="credential-item">
-                    <span class="cred-name">🎓 Bachelor Degree</span>
-                    <span class="cred-status">Verified ✓</span>
+            <!-- Inner Tabs (OVERVIEW / CREDENTIALS / REPUTATION) -->
+            <div class="inner-tabs">
+                <button class="inner-tab active" onclick="switchInnerTab('overview', this)">OVERVIEW</button>
+                <button class="inner-tab" onclick="switchInnerTab('credentials', this)">CREDENTIALS</button>
+                <button class="inner-tab" onclick="switchInnerTab('reputation', this)">REPUTATION</button>
+            </div>
+
+            <!-- Tab 1: Overview (Stats Bars) -->
+            <div id="pane-overview" class="tab-pane active">
+                <div class="stat-item">
+                    <div class="stat-info"><span>🎓 Education</span><span>20/20</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 100%;"></div></div>
                 </div>
-                <div class="credential-item">
-                    <span class="cred-name">💻 Web3 Developer</span>
-                    <span class="cred-status">Verified ✓</span>
+                <div class="stat-item">
+                    <div class="stat-info"><span>💼 Experience</span><span>18/20</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 90%;"></div></div>
                 </div>
-                <div class="credential-item">
-                    <span class="cred-name">🏆 Achievement NFT</span>
-                    <span class="cred-status">Verified ✓</span>
+                <div class="stat-item">
+                    <div class="stat-info"><span>💻 Skills</span><span>17/20</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 85%;"></div></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-info"><span>🏆 Achievements</span><span>15/20</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 75%;"></div></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-info"><span>🔗 On-chain Activity</span><span>10/15</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 66%;"></div></div>
                 </div>
             </div>
 
-            <!-- تبويب الشهادات (Credentials) -->
-            <div id="tab-credentials" class="tab-content">
-                <div class="section-title">All Your Credentials</div>
-                <div class="credential-item">
-                    <span class="cred-name">🎓 Bachelor Degree</span>
-                    <span class="cred-status">Verified ✓</span>
+            <!-- Tab 2: Credentials -->
+            <div id="pane-credentials" class="tab-pane">
+                <div class="cred-card-item">
+                    <div class="cred-left">🎓 Bachelor Degree</div>
+                    <span class="cred-verified">Verified ✓</span>
                 </div>
-                <div class="credential-item">
-                    <span class="cred-name">💻 Web3 Developer</span>
-                    <span class="cred-status">Verified ✓</span>
+                <div class="cred-card-item">
+                    <div class="cred-left">💻 Web3 Developer</div>
+                    <span class="cred-verified">Verified ✓</span>
                 </div>
-                <div class="credential-item">
-                    <span class="cred-name">🏆 Achievement NFT</span>
-                    <span class="cred-status">Verified ✓</span>
+                <div class="cred-card-item">
+                    <div class="cred-left">💼 5+ Years Experience</div>
+                    <span class="cred-verified">Verified ✓</span>
                 </div>
-                <div class="credential-item">
-                    <span class="cred-name">🏢 Company Founder</span>
-                    <span class="cred-status">Verified ✓</span>
+                <div class="cred-card-item">
+                    <div class="cred-left">🏆 Achievement NFT</div>
+                    <span class="cred-verified">Verified ✓</span>
                 </div>
-            </div>
-
-            <!-- تبويب الماسح (Scan) -->
-            <div id="tab-scan" class="tab-content" style="text-align: center; padding-top: 50px;">
-                <div style="font-size: 50px; margin-bottom: 15px;">📷</div>
-                <div class="section-title">Scan QR Code</div>
-                <p style="color: #9ca3af; font-size: 13px;">Scan a decentralized ID or app verification QR code across Pi Network apps.</p>
-            </div>
-
-            <!-- تبويب التطبيقات (Connections) -->
-            <div id="tab-connections" class="tab-content">
-                <div class="section-title">Connected Web3 Apps</div>
-                <div class="credential-item">
-                    <span class="cred-name">🌐 Pi Network Main Ecosystem</span>
-                    <span class="cred-status" style="color: #f59e0b; background: rgba(245,158,11,0.1);">Active</span>
-                </div>
-                <div class="credential-item">
-                    <span class="cred-name">📚 LuxAcademia Hub</span>
-                    <span class="cred-status" style="color: #f59e0b; background: rgba(245,158,11,0.1);">Linked</span>
+                <div class="cred-card-item">
+                    <div class="cred-left">🚀 Company Founder</div>
+                    <span class="cred-verified">Verified ✓</span>
                 </div>
             </div>
 
-            <!-- تبويب الإعدادات (Settings) -->
-            <div id="tab-settings" class="tab-content">
-                <div class="section-title">Account Settings</div>
-                <div class="credential-item">
-                    <span class="cred-name">🔐 Security & Privacy</span>
-                    <span style="color: #9ca3af;">›</span>
+            <!-- Tab 3: Reputation -->
+            <div id="pane-reputation" class="tab-pane">
+                <div class="cred-card-item">
+                    <div class="cred-left">⭐ Community Trust Score</div>
+                    <span class="cred-verified" style="background: rgba(245,158,11,0.1); color: #f59e0b;">Level 5</span>
                 </div>
-                <div class="credential-item">
-                    <span class="cred-name">🌐 Network Mode</span>
-                    <span style="color: #10b981; font-size: 12px;">Pi Testnet</span>
+                <div class="cred-card-item">
+                    <div class="cred-left">🛡️ Zero-Knowledge Proofs</div>
+                    <span class="cred-verified">Active ✓</span>
                 </div>
             </div>
         </div>
 
-        <!-- شريط التنقل السفلي التفاعلي -->
-        <div class="navbar" id="bottom-navbar">
-            <button class="nav-btn active" onclick="switchTab('home', this)">🏠<br>Home</button>
-            <button class="nav-btn" onclick="switchTab('credentials', this)">📜<br>Creds</button>
-            <button class="nav-btn" onclick="switchTab('scan', this)">📷<br>Scan</button>
-            <button class="nav-btn" onclick="switchTab('connections', this)">🔗<br>Apps</button>
-            <button class="nav-btn" onclick="switchTab('settings', this)">⚙️<br>Settings</button>
+        <!-- Bottom Navigation Bar -->
+        <div class="navbar">
+            <button class="nav-btn active" onclick="switchBottomNav('home', this)"><span class="nav-icon">🏠</span>Home</button>
+            <button class="nav-btn" onclick="switchBottomNav('creds', this)"><span class="nav-icon">📜</span>Credentials</button>
+            <button class="nav-btn" onclick="switchBottomNav('scan', this)"><span class="nav-icon">📷</span>Scan</button>
+            <button class="nav-btn" onclick="switchBottomNav('connections', this)"><span class="nav-icon">👥</span>Connections</button>
+            <button class="nav-btn" onclick="switchBottomNav('settings', this)"><span class="nav-icon">⚙️</span>Settings</button>
         </div>
     </div>
 
@@ -224,7 +264,7 @@
         const Pi = window.Pi;
         Pi.init({ version: "2.0" });
 
-        // جلب بيانات المستخدم تلقائياً عند تحميل التطبيق
+        // جلب اسم المستخدم الحقيقي من شبكة Pi تلقائياً
         window.addEventListener('DOMContentLoaded', async () => {
             try {
                 const scopes = ['username', 'payments'];
@@ -237,19 +277,22 @@
                     document.getElementById("display-handle").innerText = "proofpass.me/" + username.toLowerCase();
                 }
             } catch (error) {
-                console.log("وضع العرض المحلي أو خطأ في المصادقة التلقائية:", error);
+                console.log("وضع العرض المحلي:", error);
             }
         });
 
-        // دالة التنقل بين التبويبات بسلاسة
-        function switchTab(tabId, btnElement) {
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active-tab'));
+        // تبديل التبويبات الداخلية (Overview, Credentials, Reputation)
+        function switchInnerTab(paneId, btnElement) {
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.inner-tab').forEach(t => t.classList.remove('active'));
             
-            const buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            document.getElementById('tab-' + tabId).classList.add('active-tab');
+            document.getElementById('pane-' + paneId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+
+        // تبديل القائمة السفلية
+        function switchBottomNav(navName, btnElement) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             btnElement.classList.add('active');
         }
     </script>

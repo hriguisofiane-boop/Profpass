@@ -1,9 +1,9 @@
-DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProofPass - Decentralized Identity</title>
+    <title>ProofPass - Gateway & Ecosystem Hub</title>
     <!-- Pi Network Domain Validation -->
     <meta name="pi-app-validation" content="e65fcc7d8d0dc1e68bc73319ef912e66b78">
     
@@ -11,34 +11,70 @@ DOCTYPE html>
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f4f4f9, #e2d9f3); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 8px 20px rgba(98, 37, 157, 0.15); text-align: center; max-width: 400px; width: 90%; }
-        h1 { color: #62259d; margin-bottom: 5px; font-size: 26px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f4f4f9, #e2d9f3); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 8px 25px rgba(98, 37, 157, 0.15); text-align: center; max-width: 450px; width: 90%; }
+        h1 { color: #62259d; margin-bottom: 5px; font-size: 28px; }
         .subtitle { color: #666; font-size: 14px; margin-bottom: 25px; }
+        
         #connect-btn { background-color: #62259d; color: white; border: none; padding: 14px 20px; font-size: 16px; border-radius: 12px; cursor: pointer; width: 100%; transition: background 0.3s; font-weight: bold; box-shadow: 0 4px 10px rgba(98, 37, 157, 0.3); }
         #connect-btn:hover { background-color: #4e1c7c; }
         
-        /* تصميم بطاقة الهوية من الداخل */
-        .id-badge { display: none; background: linear-gradient(135deg, #62259d, #8a4cb8); color: white; padding: 20px; border-radius: 15px; margin-top: 15px; text-align: right; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        /* لوحة تحكم الهوية والتطبيقات المرتبطة */
+        .dashboard { display: none; text-align: right; }
+        .id-badge { background: linear-gradient(135deg, #62259d, #8a4cb8); color: white; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .id-badge h3 { margin: 0 0 10px 0; font-size: 20px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 8px; }
         .id-badge p { margin: 6px 0; font-size: 15px; }
         .verified-tag { background: #4CAF50; color: white; padding: 4px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-top: 8px; font-weight: bold; }
+        
+        /* قائمة التطبيقات المربوطة بالنظام */
+        .apps-section h3 { color: #333; font-size: 18px; margin-bottom: 12px; text-align: right; }
+        .app-item { background: #f9f9fb; border: 1px solid #e0def0; padding: 12px 15px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        .app-item:hover { border-color: #62259d; background: #fdfcff; }
+        .app-info { text-align: right; }
+        .app-name { font-weight: bold; color: #333; font-size: 15px; }
+        .app-desc { font-size: 12px; color: #777; }
+        .app-link-btn { background: #62259d; color: white; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; }
+        .app-link-btn:hover { background: #4e1c7c; }
     </style>
 </head>
 <body>
     <div class="card">
         <h1>ProofPass</h1>
-        <div class="subtitle">Decentralized Identity & Verified Skills</div>
+        <div class="subtitle">بوابة الهوية المركزية لشبكة Pi</div>
         
-        <!-- زر تسجيل الدخول -->
-        <button id="connect-btn">Connect with Pi Network</button>
+        <!-- زر تسجيل الدخول الموحد -->
+        <button id="connect-btn">ربط حساب Pi والدخول للنظام</button>
 
-        <!-- بطاقة الهوية التي تظهر من الداخل بعد تسجيل الدخول -->
-        <div id="profile-card" class="id-badge">
-            <h3>بطاقة الهوية الرقمية</h3>
-            <p><strong>المستخدم:</strong> <span id="username-display"></span></p>
-            <p><strong>الحالة:</strong> موثق عبر شبكة Pi</p>
-            <span class="verified-tag">✓ Verified User</span>
+        <!-- لوحة التحكم وتطبيقات المنظومة (تظهر بعد تسجيل الدخول) -->
+        <div id="dashboard-view" class="dashboard">
+            <div class="id-badge">
+                <h3>بطاقة الهوية المركزية</h3>
+                <p><strong>المستخدم:</strong> <span id="username-display"></span></p>
+                <p><strong>الحالة:</strong> موثق بمعرف موحد عبر Pi</p>
+                <span class="verified-tag">✓ Verified Ecosystem ID</span>
+            </div>
+
+            <div class="apps-section">
+                <h3>تطبيقات المنظومة المتاحة لك:</h3>
+                
+                <!-- تطبيق LuxAcademia -->
+                <div class="app-item">
+                    <div class="app-info">
+                        <div class="app-name">LuxAcademia</div>
+                        <div class="app-desc">منصة التعليم الأكاديمي والمهارات</div>
+                    </div>
+                    <a href="#" onclick="launchApp('LuxAcademia')" class="app-link-btn">دخول</a>
+                </div>
+
+                <!-- تطبيقات أخرى مستقبلية -->
+                <div class="app-item">
+                    <div class="app-info">
+                        <div class="app-name">Pi Web3 Services</div>
+                        <div class="app-desc">خدمات التوثيق والمدفوعات</div>
+                    </div>
+                    <a href="#" onclick="launchApp('Pi Services')" class="app-link-btn">دخول</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -53,13 +89,20 @@ DOCTYPE html>
                 
                 const auth = await Pi.authenticate(scopes, onIncompletePaymentFound);
                 
-                // إخفاء زر الاتصال وإظهار تفاصيل الهوية من الداخل
+                // إخفاء زر الاتصال وإظهار لوحة التحكم المركزية وبطاقة الهوية والتطبيقات
                 document.getElementById("connect-btn").style.display = "none";
                 document.getElementById("username-display").innerText = auth.user.username;
-                document.getElementById("profile-card").style.display = "block";
+                document.getElementById("dashboard-view").style.display = "block";
                 
             } catch (error) {
                 console.error("خطأ في المصادقة:", error);
                 alert("فشل تسجيل الدخول، حاول مرة أخرى.");
             }
         });
+
+        function appLaunch(appName) {
+            alert("جاري توجيهك إلى تطبيق " + appName + " باستخدام جلستك الموثقة في ProofPass...");
+        }
+    </script>
+</body>
+</html>

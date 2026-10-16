@@ -34,7 +34,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            height: 650px;
+            height: 680px;
         }
         .header {
             display: flex;
@@ -47,25 +47,6 @@
         
         .content { padding: 20px; flex-grow: 1; overflow-y: auto; text-align: left; }
         
-        /* Login State */
-        #login-view { text-align: center; padding-top: 40px; }
-        .logo-icon { font-size: 50px; margin-bottom: 15px; }
-        h1 { color: #f59e0b; font-size: 24px; margin-bottom: 10px; }
-        .welcome-desc { color: #9ca3af; font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
-        #connect-btn { 
-            background: linear-gradient(135deg, #f59e0b, #d97706); 
-            color: #0b0f19; 
-            border: none; 
-            padding: 15px 20px; 
-            font-size: 16px; 
-            border-radius: 14px; 
-            cursor: pointer; 
-            width: 100%; 
-            font-weight: bold; 
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-            transition: 0.3s;
-        }
-
         /* Dashboard & Tabs */
         .tab-content { display: none; }
         .tab-content.active-tab { display: block; }
@@ -126,11 +107,11 @@
 
         /* Navigation Bar */
         .navbar {
-            display: none; /* مخفي حتى يتم تسجيل الدخول */
+            display: flex; 
             justify-content: space-around;
             background: #111827;
             border-top: 1px solid #1f2937;
-            padding: 12px 0;
+            padding: 10px 0;
         }
         .nav-btn { background: none; border: none; font-size: 11px; color: #9ca3af; text-align: center; cursor: pointer; transition: 0.2s; }
         .nav-btn.active { color: #f59e0b; font-weight: bold; }
@@ -140,24 +121,16 @@
     <div class="phone-frame">
         <div class="header">
             <h2>🛡️ ProofPass</h2>
-            <span id="header-status">🔒</span>
+            <span id="header-status">🟢</span>
         </div>
 
         <div class="content">
-            <!-- شاشة تسجيل الدخول -->
-            <div id="login-view">
-                <div class="logo-icon">🛡️</div>
-                <h1>ProofPass</h1>
-                <p class="welcome-desc">The First Universal Trust Passport for Web3.<br>One Identity. Unlimited Trust.</p>
-                <button id="connect-btn">Connect with Pi Network</button>
-            </div>
-
-            <!-- لوحة التحكم: تبويب الرئيسية (Home) -->
-            <div id="tab-home" class="tab-content">
+            <!-- تبويب الرئيسية (Home) - يجمع كل شيء -->
+            <div id="tab-home" class="tab-content active-tab">
                 <div class="profile-section">
                     <div class="avatar">👤</div>
-                    <div class="username" id="display-username">Sofiane</div>
-                    <div class="handle" id="display-handle">proofpass.me/sofiane</div>
+                    <div class="username" id="display-username">Pepe0807</div>
+                    <div class="handle" id="display-handle">proofpass.me/pepe0807</div>
                     <div class="verified-badge">✓ Verified Human</div>
                 </div>
 
@@ -170,6 +143,14 @@
                 <div class="section-title">Verified Credentials</div>
                 <div class="credential-item">
                     <span class="cred-name">🎓 Bachelor Degree</span>
+                    <span class="cred-status">Verified ✓</span>
+                </div>
+                <div class="credential-item">
+                    <span class="cred-name">💻 Web3 Developer</span>
+                    <span class="cred-status">Verified ✓</span>
+                </div>
+                <div class="credential-item">
+                    <span class="cred-name">🏆 Achievement NFT</span>
                     <span class="cred-status">Verified ✓</span>
                 </div>
             </div>
@@ -195,14 +176,14 @@
                 </div>
             </div>
 
-            <!-- تبويب المسح (Scan) -->
+            <!-- تبويب الماسح (Scan) -->
             <div id="tab-scan" class="tab-content" style="text-align: center; padding-top: 50px;">
                 <div style="font-size: 50px; margin-bottom: 15px;">📷</div>
                 <div class="section-title">Scan QR Code</div>
                 <p style="color: #9ca3af; font-size: 13px;">Scan a decentralized ID or app verification QR code across Pi Network apps.</p>
             </div>
 
-            <!-- تبويب الاتصالات (Connections) -->
+            <!-- تبويب التطبيقات (Connections) -->
             <div id="tab-connections" class="tab-content">
                 <div class="section-title">Connected Web3 Apps</div>
                 <div class="credential-item">
@@ -243,37 +224,33 @@
         const Pi = window.Pi;
         Pi.init({ version: "2.0" });
 
-        document.getElementById("connect-btn").addEventListener("click", async () => {
+        // جلب بيانات المستخدم تلقائياً عند تحميل التطبيق
+        window.addEventListener('DOMContentLoaded', async () => {
             try {
                 const scopes = ['username', 'payments'];
                 function onIncompletePaymentFound(payment) {}
                 
                 const auth = await Pi.authenticate(scopes, onIncompletePaymentFound);
-                
-                const username = auth.user.username;
-                document.getElementById("display-username").innerText = username;
-                document.getElementById("display-handle").innerText = "proofpass.me/" + username.toLowerCase();
-                
-                // إخفاء زر تسجيل الدخول وإظهار لوحة التحكم وشريط التنقل
-                document.getElementById("login-view").style.display = "none";
-                document.getElementById("tab-home").classList.add("active-tab");
-                document.getElementById("bottom-navbar").style.display = "flex";
-                document.getElementById("header-status").innerText = "🟢";
-                
+                if (auth && auth.user && auth.user.username) {
+                    const username = auth.user.username;
+                    document.getElementById("display-username").innerText = username;
+                    document.getElementById("display-handle").innerText = "proofpass.me/" + username.toLowerCase();
+                }
             } catch (error) {
-                console.error("خطأ في المصادقة:", error);
-                alert("فشل تسجيل الدخول، حاول مرة أخرى.");
+                console.log("وضع العرض المحلي أو خطأ في المصادقة التلقائية:", error);
             }
         });
 
         // دالة التنقل بين التبويبات بسلاسة
-        function switchTab(tabName, btnElement) {
-            // إخفاء كل التبويبات
+        function switchTab(tabId, btnElement) {
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active-tab'));
             
-            // إظهار التبويب المطلوب
-            document.getElementById('tab-'-tabName).classList.add('active-tab'); // تم التصحيح أدناه
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById('tab-' + tabId).classList.add('active-tab');
+            btnElement.classList.add('active');
         }
     </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProofPass - The First Universal Trust Passport for Web3</title>
+    <title>ProofPass - Luxveres Universal Trust Passport</title>
     <!-- Pi Network Domain Validation -->
     <meta name="pi-app-validation" content="e65fcc7d8d0dc1e68bc73319ef912e66b78">
     
@@ -28,9 +28,9 @@
             background: #0b101b;
             width: 100%;
             max-width: 400px;
-            height: 760px;
+            height: 770px;
             border-radius: 42px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 25px rgba(245, 158, 11, 0.12);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 25px rgba(245, 158, 11, 0.14);
             border: 3px solid #263147;
             overflow: hidden;
             position: relative;
@@ -43,8 +43,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 22px 12px;
+            padding: 18px 22px 12px;
             background: #0b101b;
+            border-bottom: 1px solid #162033;
             z-index: 10;
         }
         .icon-btn {
@@ -70,11 +71,14 @@
             font-weight: 700;
             color: #ffffff;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         /* Scrollable Content */
         .content {
-            padding: 5px 20px 20px;
+            padding: 12px 18px 20px;
             flex-grow: 1;
             overflow-y: auto;
         }
@@ -90,9 +94,9 @@
         .profile-section { text-align: center; margin-bottom: 14px; }
         .avatar-wrapper {
             position: relative;
-            width: 88px;
-            height: 88px;
-            margin: 0 auto 10px;
+            width: 86px;
+            height: 86px;
+            margin: 0 auto 8px;
             border-radius: 50%;
             padding: 3px;
             background: linear-gradient(135deg, #fbbf24, #d97706);
@@ -126,7 +130,7 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            font-size: 21px;
+            font-size: 20px;
             font-weight: 700;
             color: #ffffff;
         }
@@ -147,9 +151,9 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            font-size: 12.5px;
+            font-size: 12px;
             color: #9ca3af;
-            margin: 4px 0 10px;
+            margin: 4px 0 8px;
         }
         .copy-btn {
             background: none;
@@ -162,9 +166,9 @@
         .verified-pill {
             background: rgba(16, 185, 129, 0.12);
             color: #34d399;
-            padding: 4px 14px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 600;
             display: inline-block;
             border: 1px solid rgba(16, 185, 129, 0.35);
@@ -174,30 +178,21 @@
         .score-card {
             background: linear-gradient(180deg, #131c2e 0%, #0d1422 100%);
             border-radius: 18px;
-            padding: 16px 15px 12px;
-            margin-bottom: 16px;
+            padding: 14px 15px 12px;
+            margin-bottom: 14px;
             border: 1px solid #23304a;
             text-align: center;
             position: relative;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .gauge-container {
             position: relative;
             width: 160px;
-            height: 85px;
+            height: 82px;
             margin: 0 auto;
             overflow: hidden;
         }
-        .gauge-svg {
-            width: 160px;
-            height: 160px;
-        }
-        .gauge-bg {
-            fill: none;
-            stroke: #1e293b;
-            stroke-width: 10;
-            stroke-linecap: round;
-        }
+        .gauge-svg { width: 160px; height: 160px; }
+        .gauge-bg { fill: none; stroke: #1e293b; stroke-width: 10; stroke-linecap: round; }
         .gauge-fill {
             fill: none;
             stroke: url(#goldGrad);
@@ -209,23 +204,21 @@
         }
         .gauge-inner-text {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             text-align: center;
         }
         .score-label { font-size: 11px; color: #cbd5e1; margin-bottom: 2px; }
-        .score-num { font-size: 34px; font-weight: 800; color: #ffffff; line-height: 1; }
-        .score-num span { font-size: 15px; color: #94a3b8; font-weight: 500; }
-        .score-trust { font-size: 13px; color: #34d399; font-weight: 600; margin-top: 6px; }
-        .score-updated { font-size: 10.5px; color: #64748b; margin-top: 2px; }
+        .score-num { font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1; }
+        .score-num span { font-size: 14px; color: #94a3b8; font-weight: 500; }
+        .score-trust { font-size: 12.5px; color: #34d399; font-weight: 600; margin-top: 5px; }
+        .score-updated { font-size: 10px; color: #64748b; margin-top: 2px; }
 
-        /* Inner Sub-Tabs (OVERVIEW / CREDENTIALS / REPUTATION) */
+        /* Inner Sub-Tabs */
         .inner-tabs {
             display: flex;
             justify-content: space-between;
             border-bottom: 1px solid #1e293b;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             padding: 0 5px;
         }
         .inner-tab {
@@ -250,14 +243,14 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 11px;
-            font-size: 12.5px;
+            margin-bottom: 10px;
+            font-size: 12px;
         }
         .stat-label {
             display: flex;
             align-items: center;
             gap: 8px;
-            width: 42%;
+            width: 43%;
             color: #e2e8f0;
         }
         .stat-bar-wrap {
@@ -275,41 +268,64 @@
         .bar-ach { background: linear-gradient(90deg, #f97316, #fb923c); width: 75%; }
         .bar-onc { background: linear-gradient(90deg, #06b6d4, #22d3ee); width: 66%; }
         .bar-com { background: linear-gradient(90deg, #eab308, #facc15); width: 70%; }
-        .stat-val { width: 38px; text-align: right; color: #cbd5e1; font-size: 12px; }
+        .stat-val { width: 38px; text-align: right; color: #cbd5e1; font-size: 11.5px; }
 
-        /* Credential Cards */
+        /* Credential & App Cards */
         .section-header {
-            font-size: 12px;
+            font-size: 11.5px;
             color: #fbbf24;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin: 8px 0 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .cred-card {
             background: #131c2e;
             border: 1px solid #23304a;
             border-radius: 14px;
-            padding: 12px 14px;
+            padding: 11px 13px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 9px;
+            margin-bottom: 8px;
+            transition: 0.2s;
         }
-        .cred-info { display: flex; align-items: center; gap: 12px; }
+        .cred-card:hover { border-color: #fbbf24; }
+        .cred-info { display: flex; align-items: center; gap: 11px; }
         .cred-icon {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 10px;
-            background: rgba(59, 130, 246, 0.12);
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 17px;
+            font-size: 18px;
+            flex-shrink: 0;
         }
-        .cred-title { font-size: 13.5px; font-weight: 600; color: #f8fafc; }
-        .cred-sub { font-size: 11px; color: #34d399; margin-top: 2px; }
+        .cred-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tag-badge {
+            font-size: 9.5px;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .tag-green { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .tag-gray { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+        .tag-gold { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+
+        .cred-sub { font-size: 11px; color: #94a3b8; margin-top: 3px; line-height: 1.3; }
         .cred-check {
             background: #10b981;
             color: #0b101b;
@@ -321,6 +337,18 @@
             justify-content: center;
             font-size: 11px;
             font-weight: bold;
+            flex-shrink: 0;
+        }
+        .launch-badge {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            flex-shrink: 0;
         }
 
         /* Share Proof / QR View */
@@ -328,15 +356,15 @@
             background: #131c2e;
             border: 1px solid #263554;
             border-radius: 20px;
-            padding: 20px;
+            padding: 18px;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         .qr-box {
             background: #ffffff;
-            width: 190px;
-            height: 190px;
-            margin: 15px auto;
+            width: 185px;
+            height: 185px;
+            margin: 12px auto;
             border-radius: 16px;
             padding: 12px;
             position: relative;
@@ -347,46 +375,46 @@
         .qr-box img { width: 100%; height: 100%; }
         .qr-center-logo {
             position: absolute;
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             background: #0b101b;
             border: 2px solid #fbbf24;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 19px;
         }
         .qr-link-pill {
             background: #0b101b;
             border: 1px solid #263554;
-            padding: 10px 16px;
+            padding: 9px 16px;
             border-radius: 25px;
-            font-size: 13.5px;
+            font-size: 13px;
             color: #e2e8f0;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        /* Web3 Apps Grid (Connections) */
+        /* Web3 Apps Grid */
         .apps-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 18px;
+            gap: 8px;
+            margin-top: 8px;
         }
         .app-tile {
             background: #131c2e;
             border: 1px solid #23304a;
-            border-radius: 14px;
-            padding: 14px 8px;
+            border-radius: 12px;
+            padding: 10px 6px;
             text-align: center;
             cursor: pointer;
             transition: 0.2s;
         }
         .app-tile:hover { border-color: #fbbf24; transform: translateY(-2px); }
-        .app-tile-icon { font-size: 24px; margin-bottom: 6px; display: block; }
-        .app-tile-name { font-size: 11.5px; color: #e2e8f0; font-weight: 600; }
+        .app-tile-icon { font-size: 20px; margin-bottom: 4px; display: block; }
+        .app-tile-name { font-size: 10.5px; color: #e2e8f0; font-weight: 600; }
 
         /* Action Button */
         .gold-btn {
@@ -397,12 +425,66 @@
             padding: 12px;
             border-radius: 12px;
             font-weight: 700;
-            font-size: 13.5px;
+            font-size: 13px;
             cursor: pointer;
             margin-top: 8px;
         }
 
-        /* Sidebar Drawer (YOUR PROOF PASSPORT) */
+        /* LUXOS AI & SSO Gateway Modal */
+        .luxos-modal {
+            position: absolute;
+            bottom: 65px;
+            left: 14px;
+            right: 14px;
+            background: #111a2e;
+            border: 1.5px solid #fbbf24;
+            border-radius: 20px;
+            padding: 16px;
+            z-index: 80;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.9);
+            display: none;
+        }
+        .luxos-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #23304a;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+        .luxos-msg {
+            font-size: 12px;
+            color: #e2e8f0;
+            line-height: 1.5;
+            background: #0b101b;
+            padding: 10px 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            text-align: right;
+            direction: rtl;
+        }
+        .luxos-input-row { display: flex; gap: 8px; }
+        .luxos-input {
+            flex-grow: 1;
+            background: #0b101b;
+            border: 1px solid #263554;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            direction: rtl;
+        }
+        .luxos-send {
+            background: #fbbf24;
+            color: #0b101b;
+            border: none;
+            padding: 0 14px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Sidebar Drawer */
         .drawer-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -481,6 +563,7 @@
             font-weight: 700;
             display: none;
             z-index: 100;
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -488,6 +571,21 @@
     <div class="phone-frame">
         <!-- Toast Notification -->
         <div id="toast">Link Copied!</div>
+
+        <!-- 8. LUXOS AI Central Assistant Modal -->
+        <div class="luxos-modal" id="luxos-modal">
+            <div class="luxos-header">
+                <span style="color:#fbbf24; font-weight:700; font-size:13px;">🤖 8. LUXOS - المساعد الذكي المركزي</span>
+                <button class="icon-btn" style="font-size:15px;" onclick="toggleLuxos()">✕</button>
+            </div>
+            <div class="luxos-msg" id="luxos-response">
+                مرحباً بك في منظومة <strong>Luxveres</strong>! هويتك الرقمية في <strong>ProofPass (بديل LuxID)</strong> متصلة الآن بجميع التطبيقات الثمانية: (LuxSwap, LuxTalent, LuxGlobal, PiElite Health, Luxveria World, HumanityX). كيف أساعدك؟
+            </div>
+            <div class="luxos-input-row">
+                <button class="luxos-send" onclick="askLuxos()">إرسال</button>
+                <input type="text" id="luxos-input" class="luxos-input" placeholder="اسأل LUXOS أو اطلب فتح تطبيق...">
+            </div>
+        </div>
 
         <!-- Sidebar Drawer (YOUR PROOF PASSPORT) -->
         <div class="drawer-overlay" id="drawer-overlay" onclick="toggleDrawer()"></div>
@@ -500,14 +598,14 @@
                 <div class="passport-icon">🛡️</div>
                 <div>
                     <div class="passport-title">Decentralized Identity</div>
-                    <div class="passport-desc">You own your identity</div>
+                    <div class="passport-desc">ProofPass (بديل LuxID)</div>
                 </div>
             </div>
             <div class="passport-item">
                 <div class="passport-icon">🎖️</div>
                 <div>
                     <div class="passport-title">Verifiable Credentials</div>
-                    <div class="passport-desc">Only share what is needed</div>
+                    <div class="passport-desc">Synced with LuxTalent & LuxAcademia</div>
                 </div>
             </div>
             <div class="passport-item">
@@ -527,8 +625,8 @@
             <div class="passport-item">
                 <div class="passport-icon">🔗</div>
                 <div>
-                    <div class="passport-title">Interoperable</div>
-                    <div class="passport-desc">Works across all Web3 apps</div>
+                    <div class="passport-title">Interoperable (8 Apps)</div>
+                    <div class="passport-desc">One Identity across all Luxveres</div>
                 </div>
             </div>
         </div>
@@ -536,10 +634,13 @@
         <!-- Top Header -->
         <div class="header">
             <button class="icon-btn" onclick="toggleDrawer()">☰</button>
-            <span class="header-title">ProofPass</span>
-            <button class="icon-btn" onclick="showToast('All credentials verified on Pi Network!')">
-                🔔<span class="notif-dot"></span>
-            </button>
+            <span class="header-title">🛡️ ProofPass</span>
+            <div style="display:flex; gap:8px; align-items:center;">
+                <button class="icon-btn" onclick="toggleLuxos()" title="LUXOS AI">🤖</button>
+                <button class="icon-btn" onclick="showToast('All 8 Luxveres Apps Synced!')">
+                    🔔<span class="notif-dot"></span>
+                </button>
+            </div>
         </div>
 
         <!-- Main Scrollable Content -->
@@ -560,7 +661,7 @@
                         <span id="display-handle">proofpass.me/sofiane</span>
                         <button class="copy-btn" onclick="copyHandle()" title="Copy Link">❐</button>
                     </div>
-                    <div class="verified-pill">Verified Human ✓</div>
+                    <div class="verified-pill">Verified Human ✓ | بديل LuxID</div>
                 </div>
 
                 <!-- Proof Score Semi-Circle Gauge -->
@@ -633,7 +734,7 @@
                             <div class="cred-icon">🎓</div>
                             <div>
                                 <div class="cred-title">Bachelor Degree</div>
-                                <div class="cred-sub">Verified</div>
+                                <div class="cred-sub" style="color:#34d399;">Verified via LuxTalent (LuxAcademia)</div>
                             </div>
                         </div>
                         <div class="cred-check">✓</div>
@@ -643,17 +744,17 @@
                             <div class="cred-icon">🛡️</div>
                             <div>
                                 <div class="cred-title">Web3 Developer</div>
-                                <div class="cred-sub">Verified</div>
+                                <div class="cred-sub" style="color:#34d399;">Verified via ProofPass</div>
                             </div>
                         </div>
                         <div class="cred-check">✓</div>
                     </div>
                     <div class="cred-card">
                         <div class="cred-info">
-                            <div class="cred-icon">💼</div>
+                            <div class="cred-icon">⚕️</div>
                             <div>
-                                <div class="cred-title">5+ Years Experience</div>
-                                <div class="cred-sub">Verified</div>
+                                <div class="cred-title">Digital Health Pass</div>
+                                <div class="cred-sub" style="color:#34d399;">Verified via PiElite Health</div>
                             </div>
                         </div>
                         <div class="cred-check">✓</div>
@@ -666,18 +767,18 @@
                         <div class="cred-info">
                             <div class="cred-icon">⭐</div>
                             <div>
-                                <div class="cred-title">Trust Rank: Top 5%</div>
-                                <div class="cred-sub">Built on real achievements</div>
+                                <div class="cred-title">Luxveres Founder & VIP</div>
+                                <div class="cred-sub" style="color:#fbbf24;">Full Access across all 8 Apps</div>
                             </div>
                         </div>
                         <div class="cred-check">✓</div>
                     </div>
                     <div class="cred-card">
                         <div class="cred-info">
-                            <div class="cred-icon">🔐</div>
+                            <div class="cred-icon">🌍</div>
                             <div>
-                                <div class="cred-title">Zero-Knowledge Proof</div>
-                                <div class="cred-sub">Active & Protected</div>
+                                <div class="cred-title">HumanityX Impact Score</div>
+                                <div class="cred-sub" style="color:#34d399;">Verified Humanitarian Contributor</div>
                             </div>
                         </div>
                         <div class="cred-check">✓</div>
@@ -691,35 +792,35 @@
                 <div class="cred-card">
                     <div class="cred-info">
                         <div class="cred-icon">🎓</div>
-                        <div><div class="cred-title">Bachelor Degree</div><div class="cred-sub">Verified</div></div>
+                        <div><div class="cred-title">Bachelor Degree</div><div class="cred-sub" style="color:#34d399;">Verified • LuxTalent (LuxAcademia)</div></div>
                     </div>
                     <div class="cred-check">✓</div>
                 </div>
                 <div class="cred-card">
                     <div class="cred-info">
-                        <div class="cred-icon">🟢</div>
-                        <div><div class="cred-title">Web3 Developer</div><div class="cred-sub">Verified</div></div>
+                        <div class="cred-icon">💻</div>
+                        <div><div class="cred-title">Web3 Developer</div><div class="cred-sub" style="color:#34d399;">Verified • ProofPass</div></div>
                     </div>
                     <div class="cred-check">✓</div>
                 </div>
                 <div class="cred-card">
                     <div class="cred-info">
                         <div class="cred-icon">💼</div>
-                        <div><div class="cred-title">5+ Years Experience</div><div class="cred-sub">Verified</div></div>
+                        <div><div class="cred-title">5+ Years Experience</div><div class="cred-sub" style="color:#34d399;">Verified • LuxTalent</div></div>
                     </div>
                     <div class="cred-check">✓</div>
                 </div>
                 <div class="cred-card">
                     <div class="cred-info">
-                        <div class="cred-icon">🟣</div>
-                        <div><div class="cred-title">Achievement NFT</div><div class="cred-sub">Verified</div></div>
+                        <div class="cred-icon">🏆</div>
+                        <div><div class="cred-title">PiLuxe Collection NFT</div><div class="cred-sub" style="color:#34d399;">Verified • LuxGlobal</div></div>
                     </div>
                     <div class="cred-check">✓</div>
                 </div>
                 <div class="cred-card">
                     <div class="cred-info">
                         <div class="cred-icon">🚀</div>
-                        <div><div class="cred-title">Company Founder</div><div class="cred-sub">Verified</div></div>
+                        <div><div class="cred-title">Company Founder</div><div class="cred-sub" style="color:#34d399;">Verified • Luxveres Ecosystem</div></div>
                     </div>
                     <div class="cred-check">✓</div>
                 </div>
@@ -729,8 +830,8 @@
             <!-- VIEW 3: SCAN & SHARE YOUR PROOF (QR CODE) -->
             <div id="view-scan" class="main-view">
                 <div class="section-header">SHARE YOUR PROOF</div>
-                <p style="font-size: 12.5px; color: #94a3b8; margin-bottom: 12px;">
-                    Share your Proof Link or QR code — only what you want.
+                <p style="font-size: 12px; color: #94a3b8; margin-bottom: 10px;">
+                    Share your Proof Link or QR code — only what you want across all 8 Luxveres apps.
                 </p>
                 <div class="qr-card">
                     <div class="qr-box">
@@ -742,49 +843,138 @@
                         🛡️ You are in control
                     </div>
                 </div>
-                <button class="gold-btn" style="margin-top: 15px;" onclick="copyHandle()">Copy Proof Link</button>
+                <button class="gold-btn" style="margin-top: 14px;" onclick="copyHandle()">Copy Proof Link</button>
             </div>
 
-            <!-- VIEW 4: CONNECTIONS (WORKS ACROSS ALL WEB3 APPS) -->
+            <!-- VIEW 4: CONNECTIONS (THE 8 LUXVERES APPS) -->
             <div id="view-connections" class="main-view">
-                <div class="section-header">WORKS ACROSS ALL WEB3 APPLICATIONS</div>
-                <div class="apps-grid">
-                    <div class="app-tile" onclick="openApp('LuxAcademia Education')">
-                        <span class="app-tile-icon">🎓</span>
-                        <span class="app-tile-name">Education</span>
+                <div class="section-header">
+                    <span>LUXVERES 8-APP ECOSYSTEM</span>
+                    <span style="color:#34d399; font-size:10px;">SSO Active ✓</span>
+                </div>
+
+                <!-- 1. LuxSwap -->
+                <div class="cred-card" onclick="openApp('1. LuxSwap', 'منصة التبادل والسوق الفاخرة')">
+                    <div class="cred-info">
+                        <div class="cred-icon">💠</div>
+                        <div>
+                            <div class="cred-title">1. LuxSwap <span class="tag-badge tag-gray">مستقل</span></div>
+                            <div class="cred-sub">منصة التبادل والسوق الفاخرة</div>
+                        </div>
                     </div>
-                    <div class="app-tile" onclick="openApp('Pi DeFi Protocol')">
+                    <span class="launch-badge">دخول ←</span>
+                </div>
+
+                <!-- 2. ProofPass -->
+                <div class="cred-card" style="border-color: #10b981;">
+                    <div class="cred-info">
+                        <div class="cred-icon">🛡️</div>
+                        <div>
+                            <div class="cred-title">2. ProofPass <span class="tag-badge tag-green">بديل LuxID</span></div>
+                            <div class="cred-sub">الهوية والتحقق والشهادات والسمعة الرقمية</div>
+                        </div>
+                    </div>
+                    <div class="cred-check">✓</div>
+                </div>
+
+                <!-- 3. LuxTalent -->
+                <div class="cred-card" onclick="openApp('3. LuxTalent', 'المواهب والتعلم والشهادات وفرص العمل بعد دمج LuxAcademia')">
+                    <div class="cred-info">
+                        <div class="cred-icon">🎓</div>
+                        <div>
+                            <div class="cred-title">3. LuxTalent <span class="tag-badge tag-green">مدمج</span></div>
+                            <div class="cred-sub">المواهب والتعلم وفرص العمل (مدمج LuxAcademia)</div>
+                        </div>
+                    </div>
+                    <span class="launch-badge">دخول ←</span>
+                </div>
+
+                <!-- 4. LuxGlobal -->
+                <div class="cred-card" onclick="openApp('4. LuxGlobal', 'المشروع العالمي مع قسم PiLuxe Collection')">
+                    <div class="cred-info">
+                        <div class="cred-icon">🌐</div>
+                        <div>
+                            <div class="cred-title">4. LuxGlobal <span class="tag-badge tag-green">مدمج</span></div>
+                            <div class="cred-sub">المشروع العالمي + قسم PiLuxe Collection</div>
+                        </div>
+                    </div>
+                    <span class="launch-badge">دخول ←</span>
+                </div>
+
+                <!-- 5. PiElite Health -->
+                <div class="cred-card" onclick="openApp('5. PiElite Health', 'الخدمات الصحية الرقمية الموثقة')">
+                    <div class="cred-info">
+                        <div class="cred-icon">➕</div>
+                        <div>
+                            <div class="cred-title">5. PiElite Health</div>
+                            <div class="cred-sub">الخدمات الصحية الرقمية</div>
+                        </div>
+                    </div>
+                    <span class="launch-badge">دخول ←</span>
+                </div>
+
+                <!-- 6. Luxveria World -->
+                <div class="cred-card" onclick="openApp('6. Luxveria World', 'العالم والمنتجعات الفاخرة')">
+                    <div class="cred-info">
+                        <div class="cred-icon">🏝️</div>
+                        <div>
+                            <div class="cred-title">6. Luxveria World</div>
+                            <div class="cred-sub">العالم والمنتجعات الفاخرة</div>
+                        </div>
+                    </div>
+                    <span class="launch-badge">دخول ←</span>
+                </div>
+
+                <!-- 7. HumanityX -->
+                <div class="cred-card" onclick="openApp('7. HumanityX', 'المساعدات الإنسانية والتبرعات والمتطوعون')">
+                    <div class="cred-info">
+                        <div class="cred-icon">🤝</div>
+                        <div>
+                            <div class="cred-title">7. HumanityX</div>
+                            <div class="cred-sub">المساعدات الإنسانية والتبرعات والمتطوعون</div>
+                        </div>
+                    </div>
+                    <span class="launch-badge">دخول ←</span>
+                </div>
+
+                <!-- 8. LUXOS -->
+                <div class="cred-card" onclick="toggleLuxos()" style="border-color: rgba(251, 191, 36, 0.5);">
+                    <div class="cred-info">
+                        <div class="cred-icon">🤖</div>
+                        <div>
+                            <div class="cred-title">8. LUXOS <span class="tag-badge tag-gold">AI Core</span></div>
+                            <div class="cred-sub">المساعد الذكي المركزي لمنظومة Luxveres</div>
+                        </div>
+                    </div>
+                    <span class="launch-badge">تشغيل ⚡</span>
+                </div>
+
+                <div class="section-header" style="margin-top:14px;">WORKS ACROSS ALL WEB3 APPLICATIONS</div>
+                <div class="apps-grid">
+                    <div class="app-tile" onclick="openApp('LuxSwap DeFi', 'منصة التبادل اللامركزي')">
                         <span class="app-tile-icon">📊</span>
                         <span class="app-tile-name">DeFi</span>
                     </div>
-                    <div class="app-tile" onclick="openApp('Pi Marketplaces')">
+                    <div class="app-tile" onclick="openApp('PiLuxe Market', 'سوق المقتنيات الفاخرة')">
                         <span class="app-tile-icon">🛍️</span>
                         <span class="app-tile-name">Marketplaces</span>
                     </div>
-                    <div class="app-tile" onclick="openApp('Web3 Hiring Portal')">
+                    <div class="app-tile" onclick="openApp('LuxTalent Hiring', 'بوابة التوظيف والمواهب')">
                         <span class="app-tile-icon">👥</span>
                         <span class="app-tile-name">Hiring</span>
                     </div>
-                    <div class="app-tile" onclick="openApp('Pi Communities')">
+                    <div class="app-tile" onclick="openApp('LuxAcademia', 'التعليم الأكاديمي المدمج')">
+                        <span class="app-tile-icon">🎓</span>
+                        <span class="app-tile-name">Education</span>
+                    </div>
+                    <div class="app-tile" onclick="openApp('HumanityX Community', 'مجتمع المتطوعين')">
                         <span class="app-tile-icon">🌐</span>
                         <span class="app-tile-name">Communities</span>
                     </div>
-                    <div class="app-tile" onclick="openApp('Verified Airdrops')">
+                    <div class="app-tile" onclick="openApp('Luxveres Airdrops', 'المكافآت للمستخدمين الموثقين')">
                         <span class="app-tile-icon">🪂</span>
                         <span class="app-tile-name">Airdrops</span>
                     </div>
-                </div>
-
-                <div class="section-header">FEATURED ECOSYSTEM PARTNER</div>
-                <div class="cred-card" onclick="openApp('LuxAcademia')" style="cursor:pointer; border-color:#fbbf24;">
-                    <div class="cred-info">
-                        <div class="cred-icon">🏛️</div>
-                        <div>
-                            <div class="cred-title">LuxAcademia Platform</div>
-                            <div class="cred-sub">Connected via ProofPass SSO</div>
-                        </div>
-                    </div>
-                    <span style="color:#fbbf24; font-weight:bold; font-size:12px;">Launch →</span>
                 </div>
             </div>
 
@@ -796,7 +986,7 @@
                         <div class="cred-icon">🔑</div>
                         <div>
                             <div class="cred-title">You Own It</div>
-                            <div class="cred-sub">Self-Sovereign Identity Active</div>
+                            <div class="cred-sub" style="color:#34d399;">Self-Sovereign Identity (بديل LuxID)</div>
                         </div>
                     </div>
                     <div class="cred-check">✓</div>
@@ -806,7 +996,17 @@
                         <div class="cred-icon">🎛️</div>
                         <div>
                             <div class="cred-title">You Control It</div>
-                            <div class="cred-sub">Selective Disclosure Enabled</div>
+                            <div class="cred-sub" style="color:#34d399;">Share Selectively across 8 Apps</div>
+                        </div>
+                    </div>
+                    <div class="cred-check">✓</div>
+                </div>
+                <div class="cred-card">
+                    <div class="cred-info">
+                        <div class="cred-icon">🔓</div>
+                        <div>
+                            <div class="cred-title">You Benefit</div>
+                            <div class="cred-sub" style="color:#34d399;">Build Trust, Unlock Opportunities</div>
                         </div>
                     </div>
                     <div class="cred-check">✓</div>
@@ -815,8 +1015,8 @@
                     <div class="cred-info">
                         <div class="cred-icon">🌐</div>
                         <div>
-                            <div class="cred-title">Pi Network SDK v2.0</div>
-                            <div class="cred-sub">Connected to Pi Testnet</div>
+                            <div class="cred-title">You Future-Proof</div>
+                            <div class="cred-sub" style="color:#34d399;">Pi Network SDK v2.0 (Testnet Active)</div>
                         </div>
                     </div>
                     <div class="cred-check">✓</div>
@@ -854,7 +1054,6 @@
         const Pi = window.Pi;
         Pi.init({ version: "2.0" });
 
-        // مصادقة المستخدم تلقائياً عبر شبكة Pi وتحديث الـ QR Code والاسم
         window.addEventListener('DOMContentLoaded', async () => {
             try {
                 const scopes = ['username', 'payments'];
@@ -870,11 +1069,10 @@
                     document.getElementById("qr-image").src = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://" + handle;
                 }
             } catch (error) {
-                console.log("Running in preview mode:", error);
+                console.log("Preview Mode:", error);
             }
         });
 
-        // التبديل بين الشاشات الخمس الرئيسية في الشريط السفلي
         function switchMainView(viewId, btn) {
             document.querySelectorAll('.main-view').forEach(v => v.classList.remove('active-view'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -883,7 +1081,6 @@
             btn.classList.add('active');
         }
 
-        // التبديل بين التبويبات الداخلية (OVERVIEW / CREDENTIALS / REPUTATION)
         function switchInnerTab(subId, btn) {
             document.querySelectorAll('.sub-pane').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.inner-tab').forEach(t => t.classList.remove('active'));
@@ -892,7 +1089,6 @@
             btn.classList.add('active');
         }
 
-        // فتح وإغلاق القائمة الجانبية (YOUR PROOF PASSPORT)
         function toggleDrawer() {
             const drawer = document.getElementById('drawer');
             const overlay = document.getElementById('drawer-overlay');
@@ -906,14 +1102,26 @@
             }
         }
 
-        // نسخ رابط الهوية
+        function toggleLuxos() {
+            const modal = document.getElementById('luxos-modal');
+            modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function askLuxos() {
+            const input = document.getElementById('luxos-input');
+            const responseBox = document.getElementById('luxos-response');
+            const query = input.value.trim();
+            if (!query) return;
+            responseBox.innerHTML = "<strong>🤖 LUXOS:</strong> تم تنفيذ أمرك («" + query + "»). هويتك في ProofPass (Score: 87/100) مفعلة عبر جميع تطبيقات Luxveres الثمانية.";
+            input.value = "";
+        }
+
         function copyHandle() {
             const handleText = document.getElementById("display-handle").innerText;
             navigator.clipboard.writeText("https://" + handleText);
             showToast("Copied: " + handleText);
         }
 
-        // إظهار إشعار سريع
         function showToast(msg) {
             const toast = document.getElementById("toast");
             toast.innerText = msg;
@@ -921,18 +1129,20 @@
             setTimeout(() => { toast.style.display = "none"; }, 2500);
         }
 
-        // فتح تطبيقات المنظومة (مثل LuxAcademia)
-        function openApp(appName) {
-            showToast("Connecting ProofPass ID to " + appName + "...");
+        function openApp(appName, appDesc) {
+            const user = document.getElementById("display-username").innerText;
+            const modal = document.getElementById('luxos-modal');
+            const responseBox = document.getElementById('luxos-response');
+            modal.style.display = 'block';
+            responseBox.innerHTML = "🔗 <strong>بوابة الدخول الموحد (ProofPass SSO):</strong><br>جاري توجيه المستخدم الموثق (<strong>" + user + "</strong> | Score: 87/100) إلى تطبيق <strong>" + appName + "</strong> (" + appDesc + ")...";
         }
 
-        // طلب توثيق شهادة جديدة عبر دفع Test-Pi
         async function mintNewCredential() {
             try {
                 await Pi.createPayment({
                     amount: 1,
                     memo: "ProofPass Verified Credential Minting",
-                    metadata: { type: "credential_mint" }
+                    metadata: { type: "credential_mint", ecosystem: "Luxveres" }
                 }, {
                     onReadyForServerApproval: (paymentId) => { console.log("Approval:", paymentId); },
                     onReadyForServerCompletion: (paymentId, txid) => { showToast("Credential Verified! TX: " + txid); },

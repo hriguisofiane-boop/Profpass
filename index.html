@@ -32,6 +32,9 @@
             border: 4px solid #1f2937;
             overflow: hidden;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 650px;
         }
         .header {
             display: flex;
@@ -42,10 +45,10 @@
         }
         .header h2 { margin: 0; font-size: 18px; color: #f3f4f6; letter-spacing: 1px; }
         
-        .content { padding: 20px; text-align: center; }
+        .content { padding: 20px; flex-grow: 1; overflow-y: auto; text-align: left; }
         
         /* Login State */
-        #login-view { padding: 40px 20px; }
+        #login-view { text-align: center; padding-top: 40px; }
         .logo-icon { font-size: 50px; margin-bottom: 15px; }
         h1 { color: #f59e0b; font-size: 24px; margin-bottom: 10px; }
         .welcome-desc { color: #9ca3af; font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
@@ -62,14 +65,15 @@
             box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
             transition: 0.3s;
         }
-        #connect-btn:hover { opacity: 0.9; }
 
-        /* Dashboard State */
-        #dashboard-view { display: none; text-align: left; }
+        /* Dashboard & Tabs */
+        .tab-content { display: none; }
+        .tab-content.active-tab { display: block; }
+
         .profile-section { text-align: center; margin-bottom: 20px; }
         .avatar {
-            width: 80px;
-            height: 80px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             border: 2px solid #f59e0b;
             margin: 0 auto 10px;
@@ -79,14 +83,14 @@
             justify-content: center;
             font-size: 30px;
         }
-        .username { font-size: 20px; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
+        .username { font-size: 18px; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
         .handle { font-size: 12px; color: #9ca3af; margin-bottom: 8px; }
         .verified-badge {
             background: rgba(16, 185, 129, 0.2);
             color: #10b981;
             padding: 4px 12px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             display: inline-block;
             border: 1px solid rgba(16, 185, 129, 0.4);
@@ -96,17 +100,17 @@
         .score-card {
             background: #1f2937;
             border-radius: 16px;
-            padding: 20px;
+            padding: 18px;
             margin-bottom: 20px;
             border: 1px solid #374151;
             text-align: center;
         }
-        .score-title { font-size: 13px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; }
-        .score-value { font-size: 36px; font-weight: bold; color: #f59e0b; margin: 5px 0; }
-        .score-status { font-size: 13px; color: #10b981; font-weight: bold; }
+        .score-title { font-size: 12px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; }
+        .score-value { font-size: 32px; font-weight: bold; color: #f59e0b; margin: 4px 0; }
+        .score-status { font-size: 12px; color: #10b981; font-weight: bold; }
 
         /* Credentials List */
-        .section-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; color: #f3f4f6; }
+        .section-title { font-size: 14px; font-weight: bold; margin-bottom: 12px; color: #f3f4f6; }
         .credential-item {
             background: #1f2937;
             padding: 12px 15px;
@@ -117,27 +121,26 @@
             align-items: center;
             border: 1px solid #374151;
         }
-        .cred-name { font-size: 14px; font-weight: 500; }
-        .cred-status { color: #10b981; font-size: 12px; background: rgba(16, 185, 129, 0.1); padding: 3px 8px; border-radius: 6px; }
+        .cred-name { font-size: 13px; font-weight: 500; }
+        .cred-status { color: #10b981; font-size: 11px; background: rgba(16, 185, 129, 0.1); padding: 3px 8px; border-radius: 6px; }
 
         /* Navigation Bar */
         .navbar {
-            display: flex;
+            display: none; /* مخفي حتى يتم تسجيل الدخول */
             justify-content: space-around;
             background: #111827;
             border-top: 1px solid #1f2937;
             padding: 12px 0;
-            margin-top: 20px;
         }
-        .nav-item { font-size: 11px; color: #9ca3af; text-align: center; text-decoration: none; }
-        .nav-item.active { color: #f59e0b; }
+        .nav-btn { background: none; border: none; font-size: 11px; color: #9ca3af; text-align: center; cursor: pointer; transition: 0.2s; }
+        .nav-btn.active { color: #f59e0b; font-weight: bold; }
     </style>
 </head>
 <body>
     <div class="phone-frame">
         <div class="header">
             <h2>🛡️ ProofPass</h2>
-            <span>🔔</span>
+            <span id="header-status">🔒</span>
         </div>
 
         <div class="content">
@@ -149,8 +152,8 @@
                 <button id="connect-btn">Connect with Pi Network</button>
             </div>
 
-            <!-- لوحة التحكم الاحترافية (تظهر بعد تسجيل الدخول) -->
-            <div id="dashboard-view">
+            <!-- لوحة التحكم: تبويب الرئيسية (Home) -->
+            <div id="tab-home" class="tab-content">
                 <div class="profile-section">
                     <div class="avatar">👤</div>
                     <div class="username" id="display-username">Sofiane</div>
@@ -169,6 +172,15 @@
                     <span class="cred-name">🎓 Bachelor Degree</span>
                     <span class="cred-status">Verified ✓</span>
                 </div>
+            </div>
+
+            <!-- تبويب الشهادات (Credentials) -->
+            <div id="tab-credentials" class="tab-content">
+                <div class="section-title">All Your Credentials</div>
+                <div class="credential-item">
+                    <span class="cred-name">🎓 Bachelor Degree</span>
+                    <span class="cred-status">Verified ✓</span>
+                </div>
                 <div class="credential-item">
                     <span class="cred-name">💻 Web3 Developer</span>
                     <span class="cred-status">Verified ✓</span>
@@ -177,16 +189,53 @@
                     <span class="cred-name">🏆 Achievement NFT</span>
                     <span class="cred-status">Verified ✓</span>
                 </div>
+                <div class="credential-item">
+                    <span class="cred-name">🏢 Company Founder</span>
+                    <span class="cred-status">Verified ✓</span>
+                </div>
+            </div>
+
+            <!-- تبويب المسح (Scan) -->
+            <div id="tab-scan" class="tab-content" style="text-align: center; padding-top: 50px;">
+                <div style="font-size: 50px; margin-bottom: 15px;">📷</div>
+                <div class="section-title">Scan QR Code</div>
+                <p style="color: #9ca3af; font-size: 13px;">Scan a decentralized ID or app verification QR code across Pi Network apps.</p>
+            </div>
+
+            <!-- تبويب الاتصالات (Connections) -->
+            <div id="tab-connections" class="tab-content">
+                <div class="section-title">Connected Web3 Apps</div>
+                <div class="credential-item">
+                    <span class="cred-name">🌐 Pi Network Main Ecosystem</span>
+                    <span class="cred-status" style="color: #f59e0b; background: rgba(245,158,11,0.1);">Active</span>
+                </div>
+                <div class="credential-item">
+                    <span class="cred-name">📚 LuxAcademia Hub</span>
+                    <span class="cred-status" style="color: #f59e0b; background: rgba(245,158,11,0.1);">Linked</span>
+                </div>
+            </div>
+
+            <!-- تبويب الإعدادات (Settings) -->
+            <div id="tab-settings" class="tab-content">
+                <div class="section-title">Account Settings</div>
+                <div class="credential-item">
+                    <span class="cred-name">🔐 Security & Privacy</span>
+                    <span style="color: #9ca3af;">›</span>
+                </div>
+                <div class="credential-item">
+                    <span class="cred-name">🌐 Network Mode</span>
+                    <span style="color: #10b981; font-size: 12px;">Pi Testnet</span>
+                </div>
             </div>
         </div>
 
-        <!-- شريط التنقل السفلي -->
-        <div class="navbar">
-            <a href="#" class="nav-item active">🏠 Home</a>
-            <a href="#" class="nav-item">📜 Credentials</a>
-            <a href="#" class="nav-item">📷 Scan</a>
-            <a href="#" class="nav-item">🔗 Connections</a>
-            <a href="#" class="nav-item">⚙️ Settings</a>
+        <!-- شريط التنقل السفلي التفاعلي -->
+        <div class="navbar" id="bottom-navbar">
+            <button class="nav-btn active" onclick="switchTab('home', this)">🏠<br>Home</button>
+            <button class="nav-btn" onclick="switchTab('credentials', this)">📜<br>Creds</button>
+            <button class="nav-btn" onclick="switchTab('scan', this)">📷<br>Scan</button>
+            <button class="nav-btn" onclick="switchTab('connections', this)">🔗<br>Apps</button>
+            <button class="nav-btn" onclick="switchTab('settings', this)">⚙️<br>Settings</button>
         </div>
     </div>
 
@@ -201,19 +250,31 @@
                 
                 const auth = await Pi.authenticate(scopes, onIncompletePaymentFound);
                 
-                // تحديث الواجهة باسم المستخدم الفعلي من Pi وإظهار لوحة التحكم الراقية
                 const username = auth.user.username;
                 document.getElementById("display-username").innerText = username;
                 document.getElementById("display-handle").innerText = "proofpass.me/" + username.toLowerCase();
                 
+                // إخفاء زر تسجيل الدخول وإظهار لوحة التحكم وشريط التنقل
                 document.getElementById("login-view").style.display = "none";
-                document.getElementById("dashboard-view").style.display = "block";
+                document.getElementById("tab-home").classList.add("active-tab");
+                document.getElementById("bottom-navbar").style.display = "flex";
+                document.getElementById("header-status").innerText = "🟢";
                 
             } catch (error) {
                 console.error("خطأ في المصادقة:", error);
                 alert("فشل تسجيل الدخول، حاول مرة أخرى.");
             }
         });
+
+        // دالة التنقل بين التبويبات بسلاسة
+        function switchTab(tabName, btnElement) {
+            // إخفاء كل التبويبات
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active-tab'));
+            
+            // إظهار التبويب المطلوب
+            document.getElementById('tab-'-tabName).classList.add('active-tab'); // تم التصحيح أدناه
+        }
     </script>
 </body>
 </html>

@@ -5,18 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProofPass - Decentralized Identity</title>
     <!-- Pi Network Domain Validation -->
-    <meta name="pi-app-validation" content="e65fcc7d8d01e68bc73319ef912e66b78">
+    <meta name="pi-app-validation" content="e65fcc7d8d0dc1e68bc73319ef912e66b78">
+    
+    <!-- Pi SDK Script -->
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding-top: 50px; background: #f4f7f6; color: #333; }
-        .card { background: white; padding: 30px; border-radius: 12px; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        h1 { color: #62259d; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; max-width: 400px; width: 100%; }
+        h1 { color: #62259d; margin-bottom: 10px; }
+        p { color: #555; margin-bottom: 25px; }
+        #connect-btn { background-color: #62259d; color: white; border: none; padding: 12px 20px; font-size: 16px; border-radius: 8px; cursor: pointer; width: 100%; transition: background 0.3s; }
+        #connect-btn:hover { background-color: #4e1c7c; }
     </style>
 </head>
 <body>
     <div class="card">
         <h1>ProofPass</h1>
         <p>Decentralized Identity & Verified Skills on Pi Network</p>
-        <button style="background: #62259d; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; cursor: pointer;">Connect with Pi Network</button>
+        <button id="connect-btn">Connect with Pi Network</button>
     </div>
+
+    <script>
+        const Pi = window.Pi;
+        Pi.init({ version: "2.0" });
+
+        document.getElementById("connect-btn").addEventListener("click", async () => {
+            try {
+                const scopes = ['username', 'payments'];
+                function onIncompletePaymentFound(payment) {
+                    console.log("معاملة غير مكتملة:", payment);
+                }
+                const auth = await Pi.authenticate(scopes, onIncompletePaymentFound);
+                alert("مرحباً بك يا " + auth.user.username + "! تم ربط حساب Pi بنجاح.");
+            } catch (error) {
+                console.error("خطأ في المصادقة:", error);
+                alert("فشل تسجيل الدخول، حاول مرة أخرى.");
+            }
+        });
+    </script>
 </body>
 </html>

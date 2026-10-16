@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProofPass - Gateway & Ecosystem Hub</title>
+    <title>ProofPass - The First Universal Trust Passport for Web3</title>
     <!-- Pi Network Domain Validation -->
     <meta name="pi-app-validation" content="e65fcc7d8d0dc1e68bc73319ef912e66b78">
     
@@ -11,70 +11,182 @@
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f4f4f9, #e2d9f3); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 8px 25px rgba(98, 37, 157, 0.15); text-align: center; max-width: 450px; width: 90%; }
-        h1 { color: #62259d; margin-bottom: 5px; font-size: 28px; }
-        .subtitle { color: #666; font-size: 14px; margin-bottom: 25px; }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #0b0f19; 
+            color: #ffffff; 
+            margin: 0; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+        }
+        .phone-frame {
+            background: #111827;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            border: 4px solid #1f2937;
+            overflow: hidden;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #1f2937;
+        }
+        .header h2 { margin: 0; font-size: 18px; color: #f3f4f6; letter-spacing: 1px; }
         
-        #connect-btn { background-color: #62259d; color: white; border: none; padding: 14px 20px; font-size: 16px; border-radius: 12px; cursor: pointer; width: 100%; transition: background 0.3s; font-weight: bold; box-shadow: 0 4px 10px rgba(98, 37, 157, 0.3); }
-        #connect-btn:hover { background-color: #4e1c7c; }
+        .content { padding: 20px; text-align: center; }
         
-        /* لوحة تحكم الهوية والتطبيقات المرتبطة */
-        .dashboard { display: none; text-align: right; }
-        .id-badge { background: linear-gradient(135deg, #62259d, #8a4cb8); color: white; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .id-badge h3 { margin: 0 0 10px 0; font-size: 20px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 8px; }
-        .id-badge p { margin: 6px 0; font-size: 15px; }
-        .verified-tag { background: #4CAF50; color: white; padding: 4px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-top: 8px; font-weight: bold; }
-        
-        /* قائمة التطبيقات المربوطة بالنظام */
-        .apps-section h3 { color: #333; font-size: 18px; margin-bottom: 12px; text-align: right; }
-        .app-item { background: #f9f9fb; border: 1px solid #e0def0; padding: 12px 15px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
-        .app-item:hover { border-color: #62259d; background: #fdfcff; }
-        .app-info { text-align: right; }
-        .app-name { font-weight: bold; color: #333; font-size: 15px; }
-        .app-desc { font-size: 12px; color: #777; }
-        .app-link-btn { background: #62259d; color: white; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; }
-        .app-link-btn:hover { background: #4e1c7c; }
+        /* Login State */
+        #login-view { padding: 40px 20px; }
+        .logo-icon { font-size: 50px; margin-bottom: 15px; }
+        h1 { color: #f59e0b; font-size: 24px; margin-bottom: 10px; }
+        .welcome-desc { color: #9ca3af; font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
+        #connect-btn { 
+            background: linear-gradient(135deg, #f59e0b, #d97706); 
+            color: #0b0f19; 
+            border: none; 
+            padding: 15px 20px; 
+            font-size: 16px; 
+            border-radius: 14px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-weight: bold; 
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            transition: 0.3s;
+        }
+        #connect-btn:hover { opacity: 0.9; }
+
+        /* Dashboard State */
+        #dashboard-view { display: none; text-align: left; }
+        .profile-section { text-align: center; margin-bottom: 20px; }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #f59e0b;
+            margin: 0 auto 10px;
+            background: #1f2937;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+        .username { font-size: 20px; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
+        .handle { font-size: 12px; color: #9ca3af; margin-bottom: 8px; }
+        .verified-badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+
+        /* Proof Score Card */
+        .score-card {
+            background: #1f2937;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #374151;
+            text-align: center;
+        }
+        .score-title { font-size: 13px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; }
+        .score-value { font-size: 36px; font-weight: bold; color: #f59e0b; margin: 5px 0; }
+        .score-status { font-size: 13px; color: #10b981; font-weight: bold; }
+
+        /* Credentials List */
+        .section-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; color: #f3f4f6; }
+        .credential-item {
+            background: #1f2937;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #374151;
+        }
+        .cred-name { font-size: 14px; font-weight: 500; }
+        .cred-status { color: #10b981; font-size: 12px; background: rgba(16, 185, 129, 0.1); padding: 3px 8px; border-radius: 6px; }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background: #111827;
+            border-top: 1px solid #1f2937;
+            padding: 12px 0;
+            margin-top: 20px;
+        }
+        .nav-item { font-size: 11px; color: #9ca3af; text-align: center; text-decoration: none; }
+        .nav-item.active { color: #f59e0b; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>ProofPass</h1>
-        <div class="subtitle">بوابة الهوية المركزية لشبكة Pi</div>
-        
-        <!-- زر تسجيل الدخول الموحد -->
-        <button id="connect-btn">ربط حساب Pi والدخول للنظام</button>
+    <div class="phone-frame">
+        <div class="header">
+            <h2>🛡️ ProofPass</h2>
+            <span>🔔</span>
+        </div>
 
-        <!-- لوحة التحكم وتطبيقات المنظومة (تظهر بعد تسجيل الدخول) -->
-        <div id="dashboard-view" class="dashboard">
-            <div class="id-badge">
-                <h3>بطاقة الهوية المركزية</h3>
-                <p><strong>المستخدم:</strong> <span id="username-display"></span></p>
-                <p><strong>الحالة:</strong> موثق بمعرف موحد عبر Pi</p>
-                <span class="verified-tag">✓ Verified Ecosystem ID</span>
+        <div class="content">
+            <!-- شاشة تسجيل الدخول -->
+            <div id="login-view">
+                <div class="logo-icon">🛡️</div>
+                <h1>ProofPass</h1>
+                <p class="welcome-desc">The First Universal Trust Passport for Web3.<br>One Identity. Unlimited Trust.</p>
+                <button id="connect-btn">Connect with Pi Network</button>
             </div>
 
-            <div class="apps-section">
-                <h3>تطبيقات المنظومة المتاحة لك:</h3>
-                
-                <!-- تطبيق LuxAcademia -->
-                <div class="app-item">
-                    <div class="app-info">
-                        <div class="app-name">LuxAcademia</div>
-                        <div class="app-desc">منصة التعليم الأكاديمي والمهارات</div>
-                    </div>
-                    <a href="#" onclick="launchApp('LuxAcademia')" class="app-link-btn">دخول</a>
+            <!-- لوحة التحكم الاحترافية (تظهر بعد تسجيل الدخول) -->
+            <div id="dashboard-view">
+                <div class="profile-section">
+                    <div class="avatar">👤</div>
+                    <div class="username" id="display-username">Sofiane</div>
+                    <div class="handle" id="display-handle">proofpass.me/sofiane</div>
+                    <div class="verified-badge">✓ Verified Human</div>
                 </div>
 
-                <!-- تطبيقات أخرى مستقبلية -->
-                <div class="app-item">
-                    <div class="app-info">
-                        <div class="app-name">Pi Web3 Services</div>
-                        <div class="app-desc">خدمات التوثيق والمدفوعات</div>
-                    </div>
-                    <a href="#" onclick="launchApp('Pi Services')" class="app-link-btn">دخول</a>
+                <div class="score-card">
+                    <div class="score-title">Proof Score</div>
+                    <div class="score-value">87<span>/100</span></div>
+                    <div class="score-status">High Trust ↗</div>
+                </div>
+
+                <div class="section-title">Verified Credentials</div>
+                <div class="credential-item">
+                    <span class="cred-name">🎓 Bachelor Degree</span>
+                    <span class="cred-status">Verified ✓</span>
+                </div>
+                <div class="credential-item">
+                    <span class="cred-name">💻 Web3 Developer</span>
+                    <span class="cred-status">Verified ✓</span>
+                </div>
+                <div class="credential-item">
+                    <span class="cred-name">🏆 Achievement NFT</span>
+                    <span class="cred-status">Verified ✓</span>
                 </div>
             </div>
+        </div>
+
+        <!-- شريط التنقل السفلي -->
+        <div class="navbar">
+            <a href="#" class="nav-item active">🏠 Home</a>
+            <a href="#" class="nav-item">📜 Credentials</a>
+            <a href="#" class="nav-item">📷 Scan</a>
+            <a href="#" class="nav-item">🔗 Connections</a>
+            <a href="#" class="nav-item">⚙️ Settings</a>
         </div>
     </div>
 
@@ -89,9 +201,12 @@
                 
                 const auth = await Pi.authenticate(scopes, onIncompletePaymentFound);
                 
-                // إخفاء زر الاتصال وإظهار لوحة التحكم المركزية وبطاقة الهوية والتطبيقات
-                document.getElementById("connect-btn").style.display = "none";
-                document.getElementById("username-display").innerText = auth.user.username;
+                // تحديث الواجهة باسم المستخدم الفعلي من Pi وإظهار لوحة التحكم الراقية
+                const username = auth.user.username;
+                document.getElementById("display-username").innerText = username;
+                document.getElementById("display-handle").innerText = "proofpass.me/" + username.toLowerCase();
+                
+                document.getElementById("login-view").style.display = "none";
                 document.getElementById("dashboard-view").style.display = "block";
                 
             } catch (error) {
@@ -99,10 +214,6 @@
                 alert("فشل تسجيل الدخول، حاول مرة أخرى.");
             }
         });
-
-        function appLaunch(appName) {
-            alert("جاري توجيهك إلى تطبيق " + appName + " باستخدام جلستك الموثقة في ProofPass...");
-        }
     </script>
 </body>
 </html>
